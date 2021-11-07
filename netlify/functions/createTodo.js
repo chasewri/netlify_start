@@ -5,7 +5,7 @@ const handler = async (event) => {
     process.env.AIRTABLE_BASE_KEY
   )
 
-  const table = base(process.env.AIRTABLE_TABLE_NAME)
+  const table = base('Todos')
 
   const headers = {
     'Access-Control-Allow-Origin': '*',
