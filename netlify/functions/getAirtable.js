@@ -9,10 +9,12 @@ exports.handler = async function (event, context, callback) {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
-  };
+  }
 
   try {
-    const todos = await base('Todos').select().firstPage()
+    const todos = await base('Todos')
+      .select({ sort: [{ field: 'order', direction: 'asc' }] })
+      .firstPage()
     const formattedTodos = todos.map((todo) => ({
       id: todo.id,
       ...todo.fields
@@ -27,7 +29,7 @@ exports.handler = async function (event, context, callback) {
     return {
       statusCode: 500,
       headers,
-      body: errMJSON.stringify({ message: 'something went wrong' })
+      body: JSON.stringify({ message: 'something went wrong' })
     }
   }
   // try {
