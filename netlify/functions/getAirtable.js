@@ -5,6 +5,11 @@ exports.handler = async function (event, context, callback) {
   const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(
     'appSiD6Ta39EgPSjp'
   )
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+  };
 
   try {
     const todos = await base('Todos').select().firstPage()
@@ -14,12 +19,14 @@ exports.handler = async function (event, context, callback) {
     }))
     return {
       statusCode: 200,
+      headers,
       body: JSON.stringify(formattedTodos)
     }
   } catch (err) {
     console.log(err)
     return {
       statusCode: 500,
+      headers,
       body: errMJSON.stringify({ message: 'something went wrong' })
     }
   }

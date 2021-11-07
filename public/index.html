@@ -7,7 +7,8 @@
     <title>Todo Serverless funcitons</title>
   </head>
   <body>
-    <!-- <h1>Up and Running with Serverless Functions</h1>
+    <h1>Todo functions are here</h1>
+    <!-- 
     <button id="fetch-btn">Fetch</button>
     <p id="response-output">Response Placeholder</p>
 
@@ -17,10 +18,10 @@
         const responseText = document.getElementById('response-output')
 
         fetchBtn.addEventListener('click', async () => {
-          const res = await fetch('/.netlify/functions/hello-world')
-          const another = await fetch('/.netlify/functions/getAirtable')
+          // const res = await fetch('/.netlify/functions/hello-world')
+          const another = await fetch('https://upbeat-snyder-6fb606.netlify.app')
 
-          const text = await res.json()
+          // const text = await res.json()
           const logwh = await another.json()
           console.log(logwh)
 
