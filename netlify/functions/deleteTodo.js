@@ -14,18 +14,16 @@ const handler = async (event) => {
   }
 
   try {
-    let { todo } = JSON.parse(event.body)
+    let { todoId } = JSON.parse(event.body)
     const { httpMethod } = event
 
     let recordId
 
     await table
-      .create({
-        Todo: todo
-      })
+      .destroy(todoId)
       .then((rec) => {
         recordId = rec.id
-        console.log('Successfully inserted into airtable')
+        console.log('Successfully deleted record')
       })
       .catch((err) => {
         throw err
@@ -33,7 +31,7 @@ const handler = async (event) => {
 
     return {
       statusCode: 202,
-      body: JSON.stringify({ message: 'Accepted', id: recordId })
+      body: JSON.stringify({ message: 'Deleted', id: recordId })
     }
   } catch (err) {
     console.log(err)
