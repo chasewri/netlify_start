@@ -1,4 +1,3 @@
-require('dotenv').config()
 const Airtable = require('airtable')
 
 exports.handler = async function (event, context, callback) {
