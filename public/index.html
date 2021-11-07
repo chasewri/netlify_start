@@ -18,7 +18,11 @@
 
         fetchBtn.addEventListener('click', async () => {
           const res = await fetch('/.netlify/functions/hello-world')
+          const another = await fetch('/.netlify/functions/getAirtable')
+
           const text = await res.json()
+          const logwh = await another.json()
+          console.log(logwh)
 
           responseText.innerText = text.message
         })
